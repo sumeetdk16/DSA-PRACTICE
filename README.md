@@ -1,6 +1,6 @@
 Data Structures and Algorithms Practice  
 
-This compilation provides solutions to data structures and algorithms implemented in C++, with an emphasis on efficient methodologies, recurrent patterns, and complexity analysis.  
+This collection offers solutions for data structures and algorithms in C++, highlighting efficient methods, recurring patterns, and complexity analysis.  
 
 Scope  
 Fundamentals: arrays, strings, mathematics, matrices  
@@ -11,10 +11,10 @@ Graph traversal: breadth-first search, depth-first search
 Advanced topics: number theory, geometry  
 
 Methodology  
-Each problem focuses on:  
-Comprehending the constraints  
-Identifying the underlying pattern  
-Selecting an appropriate data structure or algorithm  
-Optimising time and space complexity  
+Each problem centres on:  
+Understanding the constraints  
+Recognising the underlying pattern  
+Choosing a suitable data structure or algorithm  
+Refining time and space complexity  
 
 Language: C++
