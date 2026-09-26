@@ -3,15 +3,13 @@ public:
     string evaluate(string s, vector<vector<string>>& knowledge) {
 
         int n = s.size(), i = 0;
-
         unordered_map<string, string> mpp;
-        for (auto &it : knowledge) {
 
+        for (auto it : knowledge) {
             mpp[it[0]] = it[1];
         }
 
         string tmp = "", ans = "";
-
         bool flag = 0;
 
         while (i < n) {
@@ -22,8 +20,7 @@ public:
             {
                 flag = 0;
 
-                if(mpp.count(tmp)) ans+=mpp[tmp];//find the value of key 
-                else ans+='?';//if not found add ?
+                ans += mpp.count(tmp) ? mpp[tmp] : "?";
 
                 tmp = "";
             } else if (flag == 0) // normal words
@@ -33,7 +30,7 @@ public:
                 tmp += s[i];
             }
 
-            i++;//inc i always 
+            i++; // inc i always
         }
 
         return ans;
