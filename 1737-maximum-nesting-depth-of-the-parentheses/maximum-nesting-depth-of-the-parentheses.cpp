@@ -3,11 +3,12 @@ public:
     int maxDepth(string s) {
         int ans = 0, cnt = 0;
 
-        for (auto it : s) {
-            if (it == '(') {
+        for (int it=0;it<s.size();it++) {
+            if (s[it] == '(') {
                 cnt++;
-            } else if (it == ')')
+            } else if (s[it] == ')')
                 cnt--;
+
             ans = max(cnt, ans);
         }
 
