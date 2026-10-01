@@ -13,13 +13,33 @@
 class Solution {
 public:
     void inorder(TreeNode* root, vector<int>& arr) {
-        if (root == nullptr)
-            return;
 
-        inorder(root->left, arr);
-        arr.push_back(root->val);
-        inorder(root->right, arr);
+        // if(root==nullptr) return;
+        while (root) {
+            if (root->left == nullptr) {
+                {
+                    arr.push_back(root->val);
+                    root = root->right;
+                }
+            } else {
+                TreeNode* prev = root->left;
+
+                while (prev->right != nullptr && prev->right != root)
+                    prev = prev->right;
+
+                if (prev->right == nullptr) {
+                    prev->right = root; // assign thread
+                    root = root->left;
+                } else {
+                    arr.push_back(root->val);
+
+                    prev->right = nullptr; // remove thread
+                    root = root->right;
+                }
+            }
+        }
     }
+
     bool findTarget(TreeNode* root, int k) {
 
         vector<int> arr;
