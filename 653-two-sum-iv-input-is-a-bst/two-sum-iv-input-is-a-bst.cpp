@@ -29,12 +29,12 @@ public:
 
                 if (prev->right == nullptr) {
                     prev->right = root; // assign thread
-                    root = root->left;
+                    root = root->left;//move to left side
                 } else {
                     arr.push_back(root->val);
 
                     prev->right = nullptr; // remove thread
-                    root = root->right;
+                    root = root->right;//move to right side
                 }
             }
         }
