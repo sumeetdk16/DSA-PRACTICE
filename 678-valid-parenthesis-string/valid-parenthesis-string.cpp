@@ -1,40 +1,37 @@
 class Solution {
 public:
     bool checkValidString(string s) {
-        
+
         int open = 0;
         int close = 0;
         int n = s.length();
-        
-        //Left to Right - Check Open Brackets
+
+        // Left to Right - Check Open Brackets
         for (int i = 0; i < n; i++) {
 
-            if (s[i] == '(' || s[i] == '*') {
+            if (s[i] == '(' || s[i] == '*') {//consider * as open 
                 open++;
             } else {
                 open--;
             }
-                
+
             if (open < 0) {
-                return false;
+                return false; // inalid parenthesis
             }
         }
 
-        //Right to Left - Check CLose Brackets
+        // Right to Left - Check CLose Brackets
         for (int i = n - 1; i >= 0; i--) {
-            
-            if (s[i] == ')' || s[i] == '*') {
+
+            if (s[i] == ')' || s[i] == '*') {//consider * as close
                 close++;
             } else {
                 close--;
             }
-            
-            
             if (close < 0) {
-                return false;
+                return false; // invalid case
             }
         }
-        
-        return true;
+        return true; // valid case
     }
 };
