@@ -2,23 +2,18 @@ class Solution {
 public:
     int scoreOfParentheses(string s) {
 
-        int score = 0;
-        vector<int> res;
+        int score = 0, depth = 0;
         for (int i = 0; i < s.size(); i++) {
 
-            if (s[i] == '(') // new start
+            if (s[i] == '(')
+                depth++;          // opening bracket case
+            else if (s[i] == ')') // closig  bracket case
             {
-                res.push_back(score);
-                score = 0;
-            } else // s[i]==')'
-            {
-                if (s[i - 1] == '(')
-                    score = res.back() + 1;
-                else {
-                    // nested case s[i]==')'
-                    score = res.back() + score * 2;
+                depth--;
+                if (s[i - 1] == '(') // add score (2^depth)
+                {
+                    score += (1 << depth);
                 }
-                res.pop_back();
             }
         }
         return score;
