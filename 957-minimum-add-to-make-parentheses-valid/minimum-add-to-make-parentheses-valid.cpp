@@ -2,20 +2,20 @@ class Solution {
 public:
     int minAddToMakeValid(string s) {
 
-        int open = 0, close = 0;
-
+        stack<int> st;
+        int cnt = 0;
         for (int i = 0; i < s.size(); i++) {
             if (s[i] == '(')
-                open++;
-            else // closing brckets
-            {
-                if (open > 0)
-                    open--;
+                st.push(1);
+            else {
+                if (st.empty())
+                    cnt++;
                 else
-                    close++;
+                    st.pop();
             }
         }
 
-        return open + close;
+        int ans = st.size() + cnt;
+        return ans;
     }
 };
