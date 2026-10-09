@@ -13,7 +13,7 @@ public:
                 if (cnt > 0) {
                     cnt--; // closed by open bracket
                 } else {
-                    ans++; // add a closing bracket
+                    ans++; // add a open bracket
                 }
 
                 if (s[i + 1] == ')')
