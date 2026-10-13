@@ -9,12 +9,12 @@ public:
             nums[i] = nums[i] * nums[i];
 
         // sorting arr
-        sort(nums.begin(), nums.end());
+        nth_element(nums.begin(), nums.begin() + n / 2, nums.end());
 
         // divide the arr into two half n/2 to maximize the sum
-        long long sum1 = accumulate(nums.begin(), nums.begin() + n / 2, 0LL);
-        long long sum2 = accumulate(nums.begin() + n / 2, nums.end(), 0LL);
+        long long smallhalf = accumulate(nums.begin(), nums.begin() + n / 2, 0LL);
+        long long largehalf = accumulate(nums.begin() + n / 2, nums.end(), 0LL);
 
-        return sum2 - sum1;
+        return largehalf - smallhalf;
     }
 };
