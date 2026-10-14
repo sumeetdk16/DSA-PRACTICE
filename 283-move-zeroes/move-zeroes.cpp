@@ -2,20 +2,16 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
 
-        int n = nums.size();
-        vector<int> arr(n, 0);
+        int i=0,n=nums.size();
 
-        int indx = 0;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] != 0) {
-                arr[indx] = nums[i];
-                indx++;
+        for(i=0;i<n;i++ )
+            if(nums[i]==0) break;//find 1st zero 
+
+        for (int j = i + 1; j < n; j++) {
+            if (nums[j] != 0) {
+                swap(nums[i], nums[j]);
+                i++;
             }
-        }
-
-        for(int i=0;i<n;i++)
-        {
-            nums[i]=arr[i];
         }
 
     }
