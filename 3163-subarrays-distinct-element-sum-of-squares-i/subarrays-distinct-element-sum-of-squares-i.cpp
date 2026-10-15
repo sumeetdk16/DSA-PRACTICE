@@ -5,14 +5,12 @@ public:
         int sum = 0, n = nums.size();
 
         for (int i = 0; i < n; i++) {
+            unordered_set<int> st;
             for (int j = i; j < n; j++) {
 
-                set<int> st;
-                for (int k = i; k <= j; k++) {
-                    st.insert(nums[k]);
-                }
+                st.insert(nums[j]);
 
-                sum+=(st.size()*st.size());
+                sum += (st.size() * st.size());
             }
         }
 
