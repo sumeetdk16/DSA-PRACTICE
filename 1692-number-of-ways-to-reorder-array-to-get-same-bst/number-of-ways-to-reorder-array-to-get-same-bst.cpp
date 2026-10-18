@@ -1,60 +1,35 @@
-static constexpr int Mod=1e9+7;// a prime
-using ll=long long;
-// extended Euclidean algorithm to find the mod inverse
-static ll inverse(ll a) {
-    ll b=Mod; // MOD is a prime, so gcd(a, MOD)=1
-    ll x0=1, x1=0; 
-    while (b>0){
-        auto [q, r]=div(a, b);// quoient & remainder
-        x0=exchange(x1, x0-q*x1);// x0=x1, x1=x0-q*x1
-        a=exchange(b, r);//(a, b)=(b, r)
-    }
-    return (x0<0)?x0+Mod:x0;// x0 is the inverse, but make x0>0
-}
-static constexpr int N=1001;
-static int F[N], invF[N];// factorials & their inverses
 class Solution {
 public:
-    static void compute_F_invF(){
-        if (F[0]==1) return; // compute only once
-        ll prod=1, invP=1;
-        F[0]=1;
-        for(int i=1; i<N; i++){
-            prod*=i;
-            if (prod>Mod) prod%=Mod;
-            F[i]=prod;
+    int Mod=1e9+7;
+    //Calcute C_{n} choose k by Pascal's equation
+    
+    int compute_C_N_choose_K(int N, int K){
+        if (K>N/2) K=N-K;//C_N choose K =C_N choose N-K
+        vector<int> C_N(K+1, 0), prevC(K+1, 0);
+        for(int i=0; i<=N; i++){
+            C_N[0]=1;
+            for(int j=1; j<=min(i, K);j++){
+                C_N[j]=((long)prevC[j-1]+prevC[j])%Mod;  
+            }
+            prevC=C_N;  
         }
-        invF[N-1]=inverse(F[N-1]);
-        
-        for (int i=N-2; i>=0; i--) 
-            invF[i]=1LL*invF[i+1]*(i+1)%Mod;
-    }
-    static inline int compute_C_N_choose_K(int N, int K){
-        return (ll)F[N]*invF[K]%Mod*invF[N-K]%Mod;
+        return C_N[K];
     }
 
-    static ll Subproblem(vector<int>& nums){
+    long long Subproblem(vector<int>& nums){
         int n=nums.size();
         if (n<=2) return 1;
         vector<int> left, right;
-        left.reserve(n), right.reserve(n);
         int root=nums[0];
         for (int i=1; i<n; i++){
             if (root<nums[i]) right.push_back(nums[i]);
             else left.push_back(nums[i]);
         }
-        ll r=Subproblem(right), l=Subproblem(left);
+        long long r=Subproblem(right), l=Subproblem(left);
         return compute_C_N_choose_K(n-1, left.size())*r%Mod*l%Mod;
+
     }
-    static int numOfWays(vector<int>& nums) {
-        compute_F_invF();
+    int numOfWays(vector<int>& nums) {
         return (Subproblem(nums)-1)%Mod;
     }
 };
-auto init = []()
-{ 
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    return 'c';
-}();
