@@ -6,15 +6,7 @@ public:
 
         for (int i = 0; i < words.size(); i++) {
 
-            string s = words[i];
-
-            for (int j = 0; j < s.size(); j++) {
-                if (s[j] == x)
-                {
-                    ans.push_back(i);
-                    break;
-                }
-            }
+            if (words[i].contains(x)) ans.push_back(i);
         }
 
         return ans;
