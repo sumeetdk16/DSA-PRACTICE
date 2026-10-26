@@ -1,7 +1,6 @@
 class Solution {
 public:
     int n, m;
-
     vector<vector<int>> directions = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
 
     long long dfs(int i, int j, vector<vector<int>>& grid) {
@@ -10,6 +9,7 @@ public:
         grid[i][j] = 0;             // mark 0 after visting
 
         for (vector<int> dir : directions) {
+
             int i_ = i + dir[0];
             int j_ = j + dir[1];
 
@@ -27,12 +27,14 @@ public:
         m = grid[0].size(); // colm
 
         int cnt = 0;
+
+        // traversing through matrix
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (grid[i][j] > 0) {
                     long long sum = dfs(i, j, grid);
                     if (sum % k == 0)
-                        cnt++;
+                        cnt++; // inc cnt if valid island
                 }
             }
         }
