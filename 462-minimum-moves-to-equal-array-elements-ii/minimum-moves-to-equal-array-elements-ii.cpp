@@ -4,7 +4,7 @@ public:
 
         int n = nums.size();
 
-        sort(nums.begin(), nums.end());
+        nth_element(nums.begin(),nums.begin()+n/2,nums.end());
         int mid_el = nums[n / 2], moves = 0;
 
         for (int i = 0; i < n; i++) {
