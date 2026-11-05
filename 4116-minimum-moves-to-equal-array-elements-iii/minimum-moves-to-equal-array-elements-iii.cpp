@@ -6,7 +6,7 @@ public:
 
         int moves = 0;
         for (int i = 0; i < nums.size(); i++)
-            moves += max_el-nums[i];
+            moves += max_el - nums[i];
 
         return moves;
     }
