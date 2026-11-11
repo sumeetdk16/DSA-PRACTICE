@@ -10,11 +10,11 @@ public:
 
         // Case B: bundle is better
         // Buy bundles as much as you can
-        int both     = min(need1, need2);
-        ll total = 1LL * both * costBoth;
+        int bothitem     = min(need1, need2);
+        ll total = 1LL * bothitem * costBoth;
 
-        need1 -= both;
-        need2 -= both;
+        need1 -= bothitem;
+        need2 -= bothitem;
 
         // Pending ones
         if(need1 > 0)
