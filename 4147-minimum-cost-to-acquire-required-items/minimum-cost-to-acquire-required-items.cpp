@@ -10,18 +10,19 @@ public:
 
         // Case B: bundle is better
         // Buy bundles as much as you can
-        int bothitem     = min(need1, need2);
-        ll total = 1LL * bothitem * costBoth;
+        int bothitem = min(need1, need2);
+
+        ll totalcost = 1LL * bothitem * costBoth;
 
         need1 -= bothitem;
         need2 -= bothitem;
 
         // Pending ones
-        if(need1 > 0)
-            total += 1LL * need1 * min(cost1, costBoth);
-        else if(need2 > 0)
-            total += 1LL * need2 * min(cost2, costBoth);
+        if (need1)
+            totalcost += 1LL * need1 * min(cost1, costBoth);
+        else if (need2)
+            totalcost += 1LL * need2 * min(cost2, costBoth);
 
-        return total;
+        return totalcost;
     }
 };
