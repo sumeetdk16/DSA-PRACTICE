@@ -1,41 +1,26 @@
 class Solution {
 public:
     int longestMonotonicSubarray(vector<int>& nums) {
+        // Step 1: Initialize increasing and decreasing lengths.
+        int inc = 1, dec = 1, answer = 1;
 
-        int n = nums.size();
-
-        stack<int> st1;
-        stack<int> st2;
-
-        st1.push(nums[0]);
-        st2.push(nums[n - 1]);
-        int ans = 1;
-
-        for (int i = 1; i < nums.size(); i++) {
-
-            // inc case
-            if (st1.top() < nums[i]) {
-                st1.push(nums[i]);
-                ans = max(ans, (int)st1.size());
+        // Step 2: Process each adjacent pair.
+        for (int i = 1; i < (int)nums.size(); i++) {
+            if (nums[i] > nums[i - 1]) {
+                inc++;
+                dec = 1;
+            } else if (nums[i] < nums[i - 1]) {
+                dec++;
+                inc = 1;
             } else {
-                // clear stack
-                while (!st1.empty())
-                    st1.pop();
-                st1.push(nums[i]);
+                inc = dec = 1;
             }
 
-            // dec case
-            if (st2.top() < nums[n - i - 1]) {
-
-                st2.push(nums[n - i - 1]);
-                ans = max(ans, (int)st2.size());
-            } else {
-                // clear stack
-                while (!st2.empty())
-                    st2.pop();
-                st2.push(nums[n - i - 1]);
-            }
+            // Step 3: Update the maximum length.
+            answer = max({answer, inc, dec});
         }
-        return ans;
+
+        // Step 4: Return the result.
+        return answer;
     }
 };
